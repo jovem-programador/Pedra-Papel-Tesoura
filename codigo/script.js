@@ -1,16 +1,21 @@
+//Escolha do play
 var playerJogo = "";
 
+//ID dos Icones
 const iconePlay = document.querySelector("#player");
 const iconeMaq = document.querySelector("#computador");
 
+//Seleção do usuario
 const pedra = document.querySelector("#pedra");
 const papel = document.querySelector("#papel");
 const tesoura = document.querySelector("#tesoura");
 
+//Placar
 const statusText = document.querySelector("#ponto");
 const placarPlay = document.querySelector("#playerPlacar");
 const placarMaq = document.querySelector("#playerComputador");
 
+//Eventos De Click
 pedra.addEventListener("click", () => {
     iconePlay.src = "img/carvao.png";
     playerJogo = "pedra";
@@ -39,8 +44,13 @@ var contadorEmpate = 0;
 var contadorPlayer = 0;
 var contadorMaquina = 0;
 
+//Start do jogo
 function start() {
+
+    //Dados = escolha da maquina
     var dados = getComputerChoice();
+
+    //Inicia o jogo
     playRound(dados);
 }
 
@@ -55,9 +65,6 @@ function getComputerChoice() {
 
     //Retorna o nome aleatorio
     return jogo[indice];
-
-    playRound();
-
 }
 
 function playRound(dados) {
@@ -66,6 +73,7 @@ function playRound(dados) {
     let computerSelection = dados;
     console.log(`Escolha da maquina: ${computerSelection}`);
 
+    //Altera o icone de acordo a escolha da Maquina na tela
     switch (computerSelection) {
         case "pedra":
             iconeMaq.src = "img/carvao.png";
@@ -93,17 +101,23 @@ function playRound(dados) {
 
         statusText.innerHTML = "Empate!!"
 
-
+        /*
         console.log(`Computer: ${computerSelection}, Player: ${playerSelection}`);
         console.log("Empate!!");
         contadorEmpate++
+        */
 
     } 
 
     if (playerSelection == "pedra" && computerSelection == "tesoura") {
 
+        //Resultado da rodada
         statusText.innerHTML = "Você Ganhou!!"
+
+        //Altera o contador
         contadorPlayer++
+
+        //Exibe o placar
         placarPlay.innerHTML = contadorPlayer
 
         /*
@@ -181,13 +195,20 @@ function playRound(dados) {
     verificar();
 }
 
+//Responsavel por verificar o placar
 function verificar() {
     
+    //Quando for igual a 5
     if (contadorPlayer == 5) {
+
+        //Exibe o alerta
         alert("Você ganhou da maquina Parabens!!");
+
+        //Reseta o contator
         contadorMaquina = 0;
         contadorPlayer = 0;
 
+        //Reseta o placar
         placarPlay.innerHTML = 0;
         placarMaq.innerHTML = 0;
     }
